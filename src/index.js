@@ -31,6 +31,11 @@ io.on('connection',(socket)=>{
 
         socket.emit('message',generateMessage('The big guy','Welcome!'))
         socket.broadcast.to(user.room).emit('message',generateMessage('The big guy',`Someone new is here! Welcome ${user.username}`))    
+        io.to(user.room).emit('roomData',{
+            room:user.room,
+            users:getUsersInRoom(user.room)
+        })
+        
         callback()
     })
 
@@ -55,7 +60,10 @@ io.on('connection',(socket)=>{
 
         if(user){
             io.to(user.room).emit('message',generateMessage('The big guy',`${user.username} left :(`))
-        }
+            io.to(user.room).emit('roomData',{
+                room:user.room,
+                users:getUsersInRoom(user.room)
+            })        }
     })
 })
 
