@@ -19,15 +19,19 @@ app.use(express.static(publicDirectoryPath))
 io.on('connection',(socket)=>{
     console.log('new websocket connection')
 
-    socket.emit('message',generateMessage('Welcome!'))
-    socket.broadcast.emit('message',generateMessage('Someone new is here!'))
+    socket.on('join',({username, room})=>{
+        socket.join(room)
+
+        socket.emit('message',generateMessage('Welcome!'))
+        socket.broadcast.to(room).emit('message',generateMessage(`Someone new is here! Welcome ${username}`))    
+    })
 
     socket.on('sendMessage',(message,callback)=>{
         const filter=new Filter()
         if(filter.isProfane(message)){
             return callback('profanity is not allowed')
         }
-        io.emit('message',generateMessage(message))
+        io.to('1').emit('message',generateMessage(message))
         callback('Delivered')
     })
 
