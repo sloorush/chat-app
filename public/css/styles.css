@@ -94,7 +94,8 @@ button:disabled {
     color: white;
     background: #333744;
     width: 225px;
-    overflow-y: scroll
+    overflow-y: scroll;
+    overflow-y:hidden;
 }
 
 /* Chat styles */
