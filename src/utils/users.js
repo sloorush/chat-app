@@ -1,32 +1,54 @@
-const users=[]
+const users = []
 
-const addUser=({id, username, room})=>{
-	//clean data
-	username=username.trim().toLowerCase()
-	room=room.trim().toLowerCase()
+// addUser, removeUser, getUser, getUsersInRoom
 
-	//validate
-	if(!username || !room){
-		return {
-			error:'Username and room are required!'
-		}
-	}
+const addUser = ({ id, username, room }) => {
+    // Clean the data
+    username = username.trim().toLowerCase()
+    room = room.trim().toLowerCase()
 
-	//check for existing user
-	const exitingUser=users.find((user)=>{
-		return user.room===room &&user.username===username
-	})
+    // Validate the data
+    if (!username || !room) {
+        return {
+            error: 'Username and room are required!'
+        }
+    }
 
-	//validate username
-	if(exisitingUser){
-		return{
-			error:'Username is already in use!'
-		}
-	}
+    // Check for existing user
+    const existingUser = users.find((user) => {
+        return user.room === room && user.username === username
+    })
 
-	//store user
-	const user={id,username,room}
-	users.push(user)
-	return {user}
+    // Validate username
+    if (existingUser) {
+        return {
+            error: 'Shit! Username is already in use!'
+        }
+    }
+
+    // Store user
+    const user = { id, username, room }
+    users.push(user)
+    return { user }
 }
 
+const removeUser = (id) => {
+    const index = users.findIndex((user) => user.id === id)
+
+    if (index !== -1) {
+        return users.splice(index, 1)[0]
+    }
+}
+
+addUser({
+    id: 22,
+    username: 'Aarush  ',
+    room: '  1'
+})
+
+console.log(users)
+
+const removedUser = removeUser(22)
+
+console.log(removedUser)
+console.log(users)
