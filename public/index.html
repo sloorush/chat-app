@@ -8,44 +8,17 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <div class="chat">
-        <div class="chat__sidebar">
-
-        </div>
-        <div class="chat__main">
-            <div id="messages" class="chat__messages"></div>
-            <div class="compose">
-                <form id='message-form' action="submit">
-                    <input name='message' type="text" class="" id="message" placeholder="enter message">
-                    <button id='send-message'>Send</button>
-                </form>
-                <button id="send-location">Send Location</button>
-            </div>
+    <div class="centered-form">
+        <div class="centered-form__box">
+            <h1>JOIN</h1>
+            <form action="./chat.html">
+                <label for="">Display Name</label>
+                <input type="text" name='username' placeholder="Display Name" required>
+                <label for="">Room</label>
+                <input type="text" name="room" placeholder="Room" required>
+                <button>JOIN</button>
+            </form>
         </div>
     </div>
-    <script id='message-template' type="text/html">
-        <div class='message'>
-            <p>
-                <span class='message__name'>username</span>
-                <span class='message__meta'>{{createdAt}}</span>
-            </p>
-            <p>{{message}}</p>    
-        </div>
-    </script>
-    <script id='location-message-template' type="text/html">
-        <div>
-            <p>
-                <span class='message__name'>username</span>
-                <span class='message__meta'>{{createdAt}}</span>
-            </p>
-            <p><a target="_blank" href="{{url}}" id="location">Click to see my location</a></p>
-        </div>
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/chat.js"></script>
 </body>
 </html>
