@@ -7,15 +7,23 @@
 </head>
 <body>
     Chat App
+
+    <div id="messages"></div>
+
     <form id='message-form' action="submit">
         <input name='message' type="text" class="" id="message" placeholder="enter message">
         <button id='send-message'>Send</button>
     </form>
     <button id="send-location">Send Location</button>
 
-    <script>
+    <script id='message-template' type="text/html">
         <div>
-            <p>This is a message</p>    
+            <p>{{message}}</p>    
+        </div>
+    </script>
+    <script id='location-message-template' type="text/html">
+        <div>
+            <a target="_blank" href="{{url}}" id="location">Click to see my location</a>
         </div>
     </script>
 
